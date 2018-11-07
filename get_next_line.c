@@ -6,7 +6,7 @@
 /*   By: SUPER epoggio <epoggio@student.le-101.fr>  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/01 09:03:26 by epoggio      #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/07 19:51:17 by epoggio     ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/07 20:28:29 by epoggio     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -74,9 +74,9 @@ int get_next_line(const int fd, char **line)
 	int ret;
 	char *to_clean;
 
-
-	if(!(f = ft_getfd(fd, &multi_fd)) && !(*line = NULL))
-		return(-1);
+	f = ft_getfd(fd, &multi_fd);
+	// if(!(f = ft_getfd(fd, &multi_fd)) && !(*line = NULL)
+	// 	return(-1);
 	if (!f->str)
 		f->str = ft_strnew(0);
 	while (!(ft_strchr(f->str, '\n')) && (ret = read(fd, buf, BUFF_SIZE)) > 0)

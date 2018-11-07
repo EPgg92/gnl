@@ -16,9 +16,8 @@ OBJECTS = $(SOURCES:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJECTS) $(INCLUDES)
-	make -C libft/
-	$(CC) $(CFLAGS) main.c $(SOURCES) $(LIBFT) -o $(NAME)
-	./gnl test.txt
+	@ make -C libft/
+	@ $(CC) $(CFLAGS) main.c $(SOURCES) $(LIBFT) -o $(NAME)
 
 clean:
 	@ make clean -C libft/
@@ -29,6 +28,11 @@ fclean: clean
 	@ rm -f $(NAME)
 
 re: fclean all
+
+test: all
+	./gnl test.txt
+	@ #./gnl test.txt > lol
+	@ #diff lol test.txt
 
 .PHONY: all clean fclean re libft
 #.SILENT: $(OBJECTS)

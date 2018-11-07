@@ -16,11 +16,32 @@ int main(int argc, char **argv)
 	{
 		fd = open(*argv++, O_RDONLY);
 		while ((i = get_next_line(fd, &line)) > 0)
-			printf("%s\n", line);
+		{
+			printf("->:%s\n", line);
+			ft_strdel(&line);
+		}
 		printf("%d\n", i);
 	}
 	return (0);
 }
+
+//
+// int main(int argc, char **argv)
+// {
+// 	int i;
+// 	int fd;
+// 	char *line;
+//
+//
+// 	if (argc != 4)
+// 		return (0);
+//
+// 		fd = open(argv[i], O_RDONLY);
+// 		while ((i = get_next_line(fd, &line)) > 0)
+// 			printf("->:%s\n", line);
+// 		//printf("%d\n", i);
+// 	return (0);
+// }
 
 
 // int main()

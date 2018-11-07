@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   libft.h                                          .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: epoggio <epoggio@student.42.fr>            +:+   +:    +:    +:+     */
+/*   By: SUPER epoggio <epoggio@student.le-101.fr>  +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/11 20:06:09 by epoggio      #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/01 09:08:18 by epoggio     ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/07 13:19:34 by epoggio     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,17 +16,21 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <string.h>
+# include <stdio.h> // to remove
 
-typedef struct		s_file
+typedef int			t_key;
+typedef char*		t_value;
+
+typedef struct		s_dict
 {
-	int				key;
-	char			*value;
+	t_key			key;
+	t_value			value;
+	size_t			size_value;
 }					t_dict;
-
 
 typedef struct		s_list
 {
-	void 			*content;
+	void			*content;
 	size_t			content_size;
 	struct s_list	*next;
 }					t_list;
@@ -112,6 +116,9 @@ void				ft_lstdelone(t_list **alst, void(*del)(void *, size_t));
 void				ft_lstadd(t_list **alst, t_list *node);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list*(*f)(t_list *elem));
-t_dict				*ft_dict(int key, t_list **dict);
+t_dict				*ft_dictaddkey(int key, t_list **dict);
+void				ft_delkintvchar(void *content, size_t size);
+t_list				*ft_dictremovekey(t_list *d, t_key k,
+		void (*del)(void *, size_t));
 
 #endif

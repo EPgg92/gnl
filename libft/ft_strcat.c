@@ -13,14 +13,15 @@
 
 #include "libft.h"
 
-char	*ft_strcat(char *dest, const char *scr)
+char	*ft_strcat(char *s1, const char *s2)
 {
-	char *begin;
+	size_t i;
+	size_t j;
 
-	begin = dest;
-	dest += ft_strlen(dest);
-	while (*scr)
-		*dest++ = *scr++;
-	*dest = '\0';
-	return (begin);
+	j = 0;
+	i = ft_strlen(s1);
+	while (s2[j])
+		s1[i++] = s2[j++];
+	s1[i] = '\0';
+	return (s1);
 }

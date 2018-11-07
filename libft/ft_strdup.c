@@ -6,7 +6,7 @@
 /*   By: epoggio <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/11 18:24:14 by epoggio      #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/11 19:19:06 by epoggio     ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/29 10:39:21 by epoggio     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,6 +19,5 @@ char	*ft_strdup(const char *s1)
 
 	if (!(m = ft_strnew(ft_strlen(s1))))
 		return (NULL);
-	ft_strcpy(m, s1);
-	return (m);
+	return (ft_strcpy(m, s1));
 }

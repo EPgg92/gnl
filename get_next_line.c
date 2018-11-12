@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   get_next_line.c                                  .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: SUPER epoggio <epoggio@student.le-101.fr>  +:+   +:    +:    +:+     */
+/*   By: epoggio <epoggio@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/11/01 09:03:26 by epoggio      #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/07 20:28:29 by epoggio     ###    #+. /#+    ###.fr     */
+/*   Created: 2018/11/12 13:40:52 by epoggio      #+#   ##    ##    #+#       */
+/*   Updated: 2018/11/12 18:46:49 by epoggio     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -32,13 +32,6 @@ static t_gnl *ft_getfd(int fd, t_gnl **files)
 	return (*files = curr);
 }
 
-static void ft_freefd(t_gnl **f)
-{
-	ft_strdel(&(*f)->str);
-	ft_memdel((void **)f);
-}
-
-
 static t_gnl *ft_cleanfd(int fd, t_gnl **files)
 {
 	t_gnl *curr;
@@ -49,7 +42,8 @@ static t_gnl *ft_cleanfd(int fd, t_gnl **files)
 	{
 		to_clean = curr;
 		*files = curr->next;
-		ft_freefd(&curr);
+		ft_strdel(&to_clean->str);
+		free(to_clean);
 	}
 	else
 		while (curr)
@@ -58,7 +52,8 @@ static t_gnl *ft_cleanfd(int fd, t_gnl **files)
 			{
 				to_clean = curr->next;
 				curr->next = curr->next->next;
-				ft_freefd(&curr);
+				ft_strdel(&to_clean->str);
+				free(to_clean);
 				break ;
 			}
 			curr = curr->next;
@@ -66,26 +61,40 @@ static t_gnl *ft_cleanfd(int fd, t_gnl **files)
 	return(*files);
 }
 
-int get_next_line(const int fd, char **line)
+int ft_readfd(const char *buf, int fd, t_gnl *f)
 {
-	static t_gnl *multi_fd;
-	t_gnl *f;
-	char buf[BUFF_SIZE + 1];
 	int ret;
 	char *to_clean;
+	char *unconst;
 
-	f = ft_getfd(fd, &multi_fd);
-	// if(!(f = ft_getfd(fd, &multi_fd)) && !(*line = NULL)
-	// 	return(-1);
-	if (!f->str)
+	unconst = (char *)buf;
+	ret = read(fd, unconst, BUFF_SIZE);
+	unconst[ret] = '\0';
+	to_clean = f->str;
+	if (!(f->str = ft_strjoin(f->str, buf)))
+		return (-1);
+	ft_strdel(&to_clean);
+	return (ret);
+}
+
+// int  ft_selectline()
+
+int get_next_line(const int fd, char **line)
+{
+	static t_gnl	*multi_fd;
+	t_gnl 			*f;
+	const char		buf[BUFF_SIZE + 1];
+	int				ret;
+	char			*to_clean;
+
+	ret = 1;
+	if(!(f = ft_getfd(fd, &multi_fd)) && fd < 0  && !line && BUFF_SIZE < 1 \
+	 	&& read(fd, to_clean, 0))
+		ret = -1;
+	if (ret && !f->str)
 		f->str = ft_strnew(0);
-	while (!(ft_strchr(f->str, '\n')) && (ret = read(fd, buf, BUFF_SIZE)) > 0)
-	{
-		to_clean = f->str;
-		buf[ret] = '\0';
-		f->str = ft_strjoin(f->str, buf);
-		ft_strdel(&to_clean);
-	}
+	while (!(ft_strchr(f->str, '\n')) && ret)
+		ret = ft_readfd(buf, fd, f);
 	if (ret > 0)
 	{
 		to_clean = f->str;
@@ -94,5 +103,5 @@ int get_next_line(const int fd, char **line)
 		ft_strdel(&to_clean);
 	}
 	multi_fd = ((ret <= 0) ? ft_cleanfd(fd, &multi_fd) : multi_fd);
-	return (((ret != 0) ? ret / ft_abs(ret) : ret) || (fd == 0));
+	return (((ret != 0) ? ret / ft_abs(ret) : ret));
 }

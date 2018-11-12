@@ -9,7 +9,9 @@
 # include "libft/libft.h"
 # include <stdio.h> //to remove
 
-# define BUFF_SIZE 10
+# define BUFF_SIZE 936
+//# define BUFF_SIZE 936
+//# define BUFF_SIZE 10
 
 typedef struct		s_gnl
 {

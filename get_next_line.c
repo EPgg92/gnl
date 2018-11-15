@@ -6,7 +6,7 @@
 /*   By: epoggio <epoggio@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/12 13:40:52 by epoggio      #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/15 01:30:35 by epoggio     ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/15 01:49:32 by epoggio     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -32,7 +32,7 @@ static t_gnl	*ft_getfd(int fd, t_gnl **files)
 	return (*files = curr);
 }
 
-static int	ft_readfd(const char *buf, int fd, t_gnl *f)
+static int		ft_readfd(const char *buf, int fd, t_gnl *f)
 {
 	int		ret;
 	char	*to_clean;
@@ -48,7 +48,7 @@ static int	ft_readfd(const char *buf, int fd, t_gnl *f)
 	return (ret);
 }
 
-static int	ft_seponfd(char **line, t_gnl *f, int ret)
+static int		ft_seponfd(char **line, t_gnl *f, int ret)
 {
 	char	*to_clean;
 	char	*tmp;
@@ -66,7 +66,7 @@ static int	ft_seponfd(char **line, t_gnl *f, int ret)
 	return (ret);
 }
 
-int	get_next_line(const int fd, char **line)
+int				get_next_line(const int fd, char **line)
 {
 	static t_gnl	*multi_fd;
 	t_gnl			*f;

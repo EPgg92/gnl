@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                          LE - /            */
+/*                                                              /             */
+/*   get_next_line.h                                  .::    .:/ .      .::   */
+/*                                                 +:+:+   +:    +:  +:+:+    */
+/*   By: epoggio <epoggio@student.le-101.fr>        +:+   +:    +:    +:+     */
+/*                                                 #+#   #+    #+    #+#      */
+/*   Created: 2018/11/15 01:48:45 by epoggio      #+#   ##    ##    #+#       */
+/*   Updated: 2018/11/15 01:48:54 by epoggio     ###    #+. /#+    ###.fr     */
+/*                                                         /                  */
+/*                                                        /                   */
+/* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
@@ -7,7 +19,6 @@
 # include <sys/types.h>
 # include <stdlib.h>
 # include "libft/libft.h"
-# include <stdio.h> //to remove
 
 # define BUFF_SIZE 32
 

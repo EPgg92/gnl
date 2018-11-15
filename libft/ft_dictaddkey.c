@@ -3,17 +3,17 @@
 /*                                                              /             */
 /*   ft_dictaddkey.c                                  .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: SUPER epoggio <epoggio@student.le-101.fr>  +:+   +:    +:    +:+     */
+/*   By: epoggio <epoggio@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/01 09:03:00 by epoggio      #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/07 15:59:12 by epoggio     ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/15 01:23:07 by epoggio     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_dict *ft_dictaddkey(int key, t_list **dict)
+t_dict	*ft_dictaddkey(int key, t_list **dict)
 {
 	t_dict *f;
 	t_dict *d;
